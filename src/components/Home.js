@@ -58,6 +58,9 @@ function Home() {
 
   return (
     <>
+    <div className="h-[100vh] w-[100vw] flex justify-center items-center"> 
+
+    <div>
 
       <h4 className="">Enter the ROOM ID</h4>
 
@@ -68,7 +71,7 @@ function Home() {
           onChange={(e) => setRoomId(e.target.value)}
           placeholder="ROOM ID"
           onKeyUp={handleInputEnter}
-        />
+          />
       </div>
       <div className="">
         <input
@@ -81,7 +84,7 @@ function Home() {
       </div>
       <button
         onClick={joinRoom}
-      >
+        >
         JOIN
       </button>
       <p className="">
@@ -89,11 +92,14 @@ function Home() {
         <span
           onClick={generateRoomId}
           style={{ cursor: "pointer" }}
-        >
+          >
           {" "}
           New Room
         </span>
       </p>
+
+      </div>
+          </div>
     </>
   );
 }
