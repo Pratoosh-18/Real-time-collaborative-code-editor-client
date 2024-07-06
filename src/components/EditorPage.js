@@ -79,7 +79,7 @@ function EditorPage() {
   const copyRoomId = async () => {
     try {
       await navigator.clipboard.writeText(roomId);
-      toast.success(`roomIs is copied`);
+      toast.success(`roomId is copied`);
     } catch (error) {
       console.log(error);
       toast.error("unable to copy the room Id");
@@ -91,24 +91,14 @@ function EditorPage() {
   };
 
   return (
-    <div className="container-fluid vh-100">
-      <div className="row h-100">
+    <div className="">
+      <div className="">
         {/* client panel */}
-        <div
-          className="col-md-2 bg-dark text-light d-flex flex-column h-100"
-          style={{ boxShadow: "2px 0px 4px rgba(0, 0, 0, 0.1)" }}
-        >
-          <img
-            src="/images/codecast.png"
-            alt="Logo"
-            className="img-fluid mx-auto"
-            style={{ maxWidth: "150px", marginTop: "-43px" }}
-          />
-          <hr style={{ marginTop: "-3rem" }} />
+        <div>
 
           {/* Client list container */}
-          <div className="d-flex flex-column flex-grow-1 overflow-auto">
-            <span className="mb-2">Members</span>
+          <div className="">
+            <span className="">Members</span>
             {clients.map((client) => (
               <Client key={client.socketId} username={client.username} />
             ))}
@@ -116,12 +106,11 @@ function EditorPage() {
 
           <hr />
           {/* Buttons */}
-          <div className="mt-auto ">
-            <button className="btn btn-success" onClick={copyRoomId}>
+          <div className="">
+            <button className="" onClick={copyRoomId}>
               Copy Room ID
             </button>
             <button
-              className="btn btn-danger mt-2 mb-2 px-3 btn-block"
               onClick={leaveRoom}
             >
               Leave Room

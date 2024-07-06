@@ -10,9 +10,22 @@ function Home() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    fetch("https://real-time-collaborative-code-editor-e8a2.onrender.com/")
-  }, [])
-  
+    const fetchData = async () => {
+      try {
+        const response = await fetch("https://real-time-collaborative-code-editor-e8a2.onrender.com/");
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const data = await response.json();
+        console.log(data);
+      } catch (error) {
+        console.error('There was a problem with the fetch operation:', error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
 
   const generateRoomId = (e) => {
     e.preventDefault();
@@ -44,61 +57,44 @@ function Home() {
   };
 
   return (
-    <div className="container-fluid">
-      <div className="row justify-content-center align-items-center min-vh-100">
-        <div className="col-12 col-md-6">
-          <div className="card shadow-sm p-2 mb-5 bg-secondary rounded">
-            <div className="card-body text-center bg-dark">
-              <img
-                src="/images/codecast.png"
-                alt="Logo"
-                className="img-fluid mx-auto d-block"
-                style={{ maxWidth: "150px" }}
-              />
-              <h4 className="card-title text-light mb-4">Enter the ROOM ID</h4>
+    <>
 
-              <div className="form-group">
-                <input
-                  type="text"
-                  value={roomId}
-                  onChange={(e) => setRoomId(e.target.value)}
-                  className="form-control mb-2"
-                  placeholder="ROOM ID"
-                  onKeyUp={handleInputEnter}
-                />
-              </div>
-              <div className="form-group">
-                <input
-                  type="text"
-                  value={username}
-                  onChange={(e) => setUsername(e.target.value)}
-                  className="form-control mb-2"
-                  placeholder="USERNAME"
-                  onKeyUp={handleInputEnter}
-                />
-              </div>
-              <button
-                onClick={joinRoom}
-                className="btn btn-success btn-lg btn-block"
-              >
-                JOIN
-              </button>
-              <p className="mt-3 text-light">
-                Don't have a room ID? create{" "}
-                <span
-                  onClick={generateRoomId}
-                  className=" text-success p-2"
-                  style={{ cursor: "pointer" }}
-                >
-                  {" "}
-                  New Room
-                </span>
-              </p>
-            </div>
-          </div>
-        </div>
+      <h4 className="">Enter the ROOM ID</h4>
+
+      <div className="">
+        <input
+          type="text"
+          value={roomId}
+          onChange={(e) => setRoomId(e.target.value)}
+          placeholder="ROOM ID"
+          onKeyUp={handleInputEnter}
+        />
       </div>
-    </div>
+      <div className="">
+        <input
+          type="text"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
+          placeholder="USERNAME"
+          onKeyUp={handleInputEnter}
+        />
+      </div>
+      <button
+        onClick={joinRoom}
+      >
+        JOIN
+      </button>
+      <p className="">
+        Don't have a room ID? create{" "}
+        <span
+          onClick={generateRoomId}
+          style={{ cursor: "pointer" }}
+        >
+          {" "}
+          New Room
+        </span>
+      </p>
+    </>
   );
 }
 
