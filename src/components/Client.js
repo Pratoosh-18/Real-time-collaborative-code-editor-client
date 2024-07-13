@@ -20,7 +20,7 @@ function Client({username}) {
   let boxColor = getRandomColor();
 
   return (
-    <div className="mb-3 flex items-center">
+    <div className="my-2 flex items-center">
       <div 
         className="box font-semibold text-lg" 
         style={{

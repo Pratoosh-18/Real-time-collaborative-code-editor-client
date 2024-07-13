@@ -91,43 +91,47 @@ function EditorPage() {
   };
 
   return (
-      <div className="h-[100vh] w-[100%] flex bg-black text-white">
-        {/* client panel */}
-        <div className="w-[20%] flex flex-col justify-between">
+    <div className="h-[100vh] w-[100%] flex bg-black text-white">
+      {/* client panel */}
+      <div className="w-[20%] flex flex-col justify-between">
 
-          {/* Client list container */}
-          <div className="mx-4">
-            <div className="w-full text-center py-2">Room Members</div>
-            {clients.map((client) => (
-              <Client key={client.socketId} username={client.username} />
-            ))}
-          </div>
-
-          {/* Buttons */}
-          <div className=" flex w-full justify-around flex-col">
-            <div className="w-full px-3">
-
-          <button type="button" onClick={copyRoomId} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Copy Room ID</button>
+        {/* Client list container */}
+        <div className="mx-4">
+          <div className="w-full text-center py-2">Room Members</div>
+          {clients.map((client, index) => (
+            <div key={client.socketId} className="flex items-center h-fit">
+              <span className="pr-3 text-center">{index + 1}.</span>
+              <Client username={client.username} />
             </div>
-            <div className="w-full px-3">
+          ))}
+        </div>
+
+
+        {/* Buttons */}
+        <div className=" flex w-full justify-around flex-col">  
+          <div className="w-full px-3">
+
+            <button type="button" onClick={copyRoomId} className="w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">Copy Room ID</button>
+          </div>
+          <div className="w-full px-3">
 
             <button type="button" onClick={leaveRoom} className="w-full focus:outline-none text-white bg-red-700 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-red-600 dark:hover:bg-red-700 dark:focus:ring-red-900">Leave Room</button>
-            </div>
-          
           </div>
-        </div>
 
-        {/* Editor panel */}
-        <div className="col-md-10 text-light d-flex flex-column h-full w-[80%]">
-          <Editor
-            socketRef={socketRef}
-            roomId={roomId}
-            onCodeChange={(code) => {
-              codeRef.current = code;
-            }}
-          />
         </div>
       </div>
+
+      {/* Editor panel */}
+      <div className="col-md-10 text-light d-flex flex-column h-full w-[80%]">
+        <Editor
+          socketRef={socketRef}
+          roomId={roomId}
+          onCodeChange={(code) => {
+            codeRef.current = code;
+          }}
+        />
+      </div>
+    </div>
   );
 }
 
