@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { v4 as uuid } from "uuid";
-import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 
 function Home() {
   const [roomId, setRoomId] = useState("");
@@ -31,12 +31,33 @@ function Home() {
     e.preventDefault();
     const Id = uuid();
     setRoomId(Id);
-    toast.success("Room Id is generated");
+    toast.success('Room Id is generated', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+      });
+    // toast.success("Room Id is generated");
   };
 
   const joinRoom = () => {
     if (!roomId || !username) {
-      toast.error("Both the field is requried");
+      toast.error("Both the field is requried", {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
       return;
     }
 
@@ -46,7 +67,17 @@ function Home() {
         username,
       },
     });
-    toast.success("room is created");
+    toast.success('Room is created', {
+      position: "bottom-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: true,
+      draggable: true,
+      progress: undefined,
+      theme: "dark",
+      // transition: Bounce,
+      });
   };
 
   // when enter then also join
