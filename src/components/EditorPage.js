@@ -116,7 +116,7 @@ function EditorPage() {
       console.log(error);
       toast.error('Unable to copy the room Id', {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,

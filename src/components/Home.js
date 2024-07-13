@@ -33,7 +33,7 @@ function Home() {
     setRoomId(Id);
     toast.success('Room Id is generated', {
       position: "bottom-right",
-      autoClose: 5000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
@@ -49,7 +49,7 @@ function Home() {
     if (!roomId || !username) {
       toast.error("Both the field is requried", {
         position: "bottom-right",
-        autoClose: 5000,
+        autoClose: 1500,
         hideProgressBar: false,
         closeOnClick: true,
         pauseOnHover: true,
@@ -69,7 +69,7 @@ function Home() {
     });
     toast.success('Room is created', {
       position: "bottom-right",
-      autoClose: 5000,
+      autoClose: 1500,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: true,
