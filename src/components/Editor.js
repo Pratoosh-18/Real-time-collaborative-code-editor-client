@@ -57,7 +57,7 @@ function Editor({ socketRef, roomId, onCodeChange }) {
   }, [socketRef.current]);
 
   return (
-    <div style={{ height: "600px" }}>
+    <div className="h-[100%]">
       <textarea id="realtimeEditor"></textarea>
     </div>
   );
