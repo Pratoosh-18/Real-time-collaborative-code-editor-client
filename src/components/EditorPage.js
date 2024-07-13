@@ -1,6 +1,7 @@
 import React, { useEffect, useRef, useState } from "react";
 import Client from "./Client";
 import Editor from "./Editor";
+import { toast } from 'react-toastify';
 import { initSocket } from "../Socket";
 import { ACTIONS } from "../Actions";
 import {
@@ -9,7 +10,7 @@ import {
   Navigate,
   useParams,
 } from "react-router-dom";
-import { toast } from "react-hot-toast";
+// import { toast } from "react-hot-toast";
 
 function EditorPage() {
   const [clients, setClients] = useState([]);
@@ -43,7 +44,17 @@ function EditorPage() {
         ({ clients, username, socketId }) => {
           // this insure that new user connected message do not display to that user itself
           if (username !== Location.state?.username) {
-            toast.success(`${username} joined the room.`);
+            toast.info(`${username} joined the room.`, {
+              position: "bottom-right",
+              autoClose: 1500,
+              hideProgressBar: false,
+              closeOnClick: true,
+              pauseOnHover: true,
+              draggable: true,
+              progress: undefined,
+              theme: "dark",
+              // transition: Bounce,
+              });
           }
           setClients(clients);
           // also send the code to sync
@@ -56,7 +67,18 @@ function EditorPage() {
 
       // listening for disconnected
       socketRef.current.on(ACTIONS.DISCONNECTED, ({ socketId, username }) => {
-        toast.success(`${username} left the room`);
+        toast.warn(`${username} left the room`, {
+          position: "bottom-right",
+          autoClose: 1500,
+          hideProgressBar: false,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          // transition: Bounce,
+          });
+        
         setClients((prev) => {
           return prev.filter((client) => client.socketId !== socketId);
         });
@@ -79,10 +101,31 @@ function EditorPage() {
   const copyRoomId = async () => {
     try {
       await navigator.clipboard.writeText(roomId);
-      toast.success(`roomId is copied`);
+      toast.success('Room ID copied', {
+        position: "bottom-right",
+        autoClose: 1500,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
     } catch (error) {
       console.log(error);
-      toast.error("unable to copy the room Id");
+      toast.error('Unable to copy the room Id', {
+        position: "bottom-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        // transition: Bounce,
+        });
+      
     }
   };
 
